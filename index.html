@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Introducing: Name that IRIS</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Introducing: Name that IRIS">
+  <meta name="author" content="John Migaleddi">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Introducing: Name that IRIS</h1>
+    <h2>Pitch Presentation</h2>
+    <p>John Migaleddi<br/>Reluctant HTML Enthusiast</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <!-- Limit image width and height -->
+
+<style type='text/css'>
+img {
+    max-height: 350px;
+    max-width: 350px;
+}
+</style>
+
+<!-- Center image on slide -->
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+<ul>
+<li>Close your eyes and imagine for a moment...</li>
+<li>Strolling through a field on a warm spring day, hand in hand with a loved one.</li>
+<li>It is quite possible that life does not get any better than this.</li>
+<li>What could possibly go wrong?<br></li>
+</ul>
+
+<p><img src="assets/img/holdhands.jpg" alt="image1"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>Who among us hasn&#39;t had a great walk spoiled by seeing an iris in a field and not knowing which species it was?</li>
+<li>This is made all the more frustrating by how easy it is to measure the sepal and petal length and width.</li>
+<li>Is there not anyone who can quantify the relationship between these variables and the species of iris?!?!</li>
+<li>Who will save our walks?!?!</li>
+</ul>
+
+<p><img src="assets/img/desperation.jpg" alt="image2"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Introducing...Name That IRIS!!!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The idea is simple: utilize the famous Fisher/Anderson iris data set and a random forest model to turn the mystery of sepal and petal measurements into a classification of species.</p>
+
+<pre><code class="r">library(caret); data(&quot;iris&quot;)
+set.seed(1234)
+train_control &lt;- trainControl(method = &quot;cv&quot;, number = 3); rf.tunegrid &lt;- data.frame(mtry = c(4))
+
+model &lt;- train(Species ~ ., data=iris, method=&quot;rf&quot;, trControl=train_control, tuneGrid = rf.tunegrid)
+</code></pre>
+
+<p>And the results are compelling, with a very high level of expected accuracy:</p>
+
+<pre><code>##               In-Sample Accuracy Est. Out-of-Sample Accuracy
+## Random Forest                  1                        0.94
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Don&#39;t Wait!</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>So visit <a href="https://jmigaleddi.shinyapps.io/NameThatIRIS/">Name That IRIS</a> today! </p>
+
+<p>Don&#39;t let the mystery of iris species spoil another walk ever again!</p>
+
+<p><img src="assets/img/happiness.jpg" alt="image3"></p>
+
+<p><span class="footnote">All code for this deck can be found at <a href="https://github.com/jmigaleddi/DDP_Pitch">Github</a></span></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Introducing...Name That IRIS!!!'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Don&#39;t Wait!'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

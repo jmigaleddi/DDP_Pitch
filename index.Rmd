@@ -1,0 +1,91 @@
+---
+title       : "Introducing: Name that IRIS"
+subtitle    : Pitch Presentation
+author      : John Migaleddi
+job         : Reluctant HTML Enthusiast
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+<!-- Limit image width and height -->
+<style type='text/css'>
+img {
+    max-height: 350px;
+    max-width: 350px;
+}
+</style>
+
+<!-- Center image on slide -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+##  
+
+- Close your eyes and imagine for a moment...
+- Strolling through a field on a warm spring day, hand in hand with a loved one.
+- It is quite possible that life does not get any better than this.
+- What could possibly go wrong?  
+  
+![image1](assets/img/holdhands.jpg)
+
+
+--- .class #id 
+
+## 
+
+- Who among us hasn't had a great walk spoiled by seeing an iris in a field and not knowing which species it was?
+- This is made all the more frustrating by how easy it is to measure the sepal and petal length and width.
+- Is there not anyone who can quantify the relationship between these variables and the species of iris?!?!
+- Who will save our walks?!?!
+
+![image2](assets/img/desperation.jpg)
+
+-----
+
+## Introducing...Name That IRIS!!!
+
+The idea is simple: utilize the famous Fisher/Anderson iris data set and a random forest model to turn the mystery of sepal and petal measurements into a classification of species.
+
+```{r, message=FALSE, warning=FALSE}
+library(caret); data("iris")
+set.seed(1234)
+train_control <- trainControl(method = "cv", number = 3); rf.tunegrid <- data.frame(mtry = c(4))
+
+model <- train(Species ~ ., data=iris, method="rf", trControl=train_control, tuneGrid = rf.tunegrid)
+```
+
+And the results are compelling, with a very high level of expected accuracy:
+
+```{r, compare model results, echo=FALSE}
+##Create the predictions on the training set
+rf.pred <- predict(model, iris)
+
+##Create a table comparing in-sample and out-of-sample accuracy
+acc.table <- cbind(confusionMatrix(iris$Species, rf.pred)$overall["Accuracy"],
+                   model$results[2])
+row.names(acc.table) <- c("Random Forest")
+colnames(acc.table) <- c("In-Sample Accuracy", "Est. Out-of-Sample Accuracy")
+
+acc.table
+```
+
+---
+
+## Don't Wait!
+
+So visit [Name That IRIS](https://jmigaleddi.shinyapps.io/NameThatIRIS/) today! 
+
+Don't let the mystery of iris species spoil another walk ever again!
+
+![image3](assets/img/happiness.jpg)
+
+<span class="footnote">All code for this deck can be found at [Github](https://github.com/jmigaleddi/DDP_Pitch)</span>
+
+
